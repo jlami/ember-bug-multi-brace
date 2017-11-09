@@ -1,5 +1,11 @@
-{{!-- The following component displays Ember's default welcome message. --}}
-{{welcome-page}}
-{{!-- Feel free to remove this! --}}
-
-{{outlet}}
+<h1>Multi brace expansion bug</h1>
+Every change of the Filter checkbox should result in a change in the resulting list length
+<br>
+<label>{{input type="checkbox" checked=testFilter}} Filter</label><br>
+<label>{{input type="checkbox" checked=showCorrect}} Show correct</label><br>
+{{#if showCorrect}}
+Correct: {{correct.length}}<br/>
+{{/if}}
+Bugged: {{bugged.length}}<br/>
+<br>
+<br>
