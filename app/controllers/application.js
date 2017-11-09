@@ -21,17 +21,14 @@ export default Ember.Controller.extend({
     return result;
   }),
   
-  somekey: 'test',
-  multiEach: Ember.computed('somekey', 'filtered.@each.{cat,id}', function() {
-    return this.get('filtered');
+  multiEach: Ember.computed('filtered.@each.{cat,id}', function() {
+    return this.get('filtered').filter((item) => (item.id + item.cat) % 2 == 0);
   }),
-  
-  between: Ember.computed.alias('multiEach.[]'),
-  
-  correct: Ember.computed.alias('between'),
+    
+  correct: Ember.computed.alias('multiEach'),
   bugged: Ember.computed(function() {
     return Ember.ArrayProxy.extend({
-      content: Ember.computed.alias('parent.between'),
+      content: Ember.computed.alias('parent.multiEach'),
     }).create({parent: this});
   }),
 });
