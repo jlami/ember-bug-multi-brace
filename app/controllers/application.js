@@ -27,8 +27,6 @@ export default Ember.Controller.extend({
     
   correct: Ember.computed.alias('multiEach'),
   bugged: Ember.computed(function() {
-    return Ember.ArrayProxy.extend({
-      content: Ember.computed.alias('parent.multiEach'),
-    }).create({parent: this});
+    return Ember.ArrayProxy.create({parent: this, content: Ember.computed.alias('parent.multiEach')});
   }),
 });
